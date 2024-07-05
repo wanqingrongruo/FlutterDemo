@@ -127,16 +127,13 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class Echo extends StatelessWidget {
-  const Echo({
-    Key? key,
-    required this.text,
-    this.backgroundColor = Colors.grey }):super(key: key);
+  const Echo({Key? key, required this.text, this.backgroundColor = Colors.grey})
+      : super(key: key);
 
   final String text;
   final Color backgroundColor;
 
-
-@override
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
@@ -150,19 +147,18 @@ class Echo extends StatelessWidget {
 class CounterWidget extends StatefulWidget {
   final int initValue;
 
-  const CounterWidget({Key? key, this.initValue = 0}):super(key: key);
-
+  const CounterWidget({Key? key, this.initValue = 0}) : super(key: key);
 
   @override
-  _CounterWidgetState createState() {
+  State<CounterWidget> createState() {
     return _CounterWidgetState();
   }
 }
 
 class _CounterWidgetState extends State<CounterWidget> {
-    int _count = 0;
+  int _count = 0;
 
-    @override
+  @override
   void initState() {
     super.initState();
 
@@ -178,18 +174,15 @@ class _CounterWidgetState extends State<CounterWidget> {
       body: Center(
         child: TextButton(
           child: Text('$_count'),
-          onPressed: () => { 
-            setState(
-              () {
-                ++_count;
-              }
-            )
+          onPressed: () => {
+            setState(() {
+              ++_count;
+            })
           },
         ),
       ),
     );
   }
-
 
   @override
   void didUpdateWidget(covariant CounterWidget oldWidget) {
@@ -223,9 +216,8 @@ class _CounterWidgetState extends State<CounterWidget> {
   }
 }
 
-
 class StateLiftcycleTest extends StatelessWidget {
-  const StateLiftcycleTest({Key? key}):super(key: key);
+  const StateLiftcycleTest({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -236,7 +228,7 @@ class StateLiftcycleTest extends StatelessWidget {
 class RenderCustomObject extends RenderBox {
   @override
   void performLayout() {
-    // 实现布局逻辑    
+    // 实现布局逻辑
   }
 
   @override
@@ -245,13 +237,17 @@ class RenderCustomObject extends RenderBox {
   }
 }
 
- class CustomWidget extends LeafRenderObjectWidget {
+class CustomWidget extends LeafRenderObjectWidget {
+  const CustomWidget({super.key});
+
   @override
   RenderObject createRenderObject(BuildContext context) {
     return RenderCustomObject();
   }
+
   @override
-  void updateRenderObject(BuildContext context, covariant RenderObject renderObject) {
+  void updateRenderObject(
+      BuildContext context, covariant RenderObject renderObject) {
     super.updateRenderObject(context, renderObject);
   }
- }
+}
