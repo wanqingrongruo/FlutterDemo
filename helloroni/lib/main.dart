@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helloroni/new_route.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +32,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      routes: {
+        "new_page": (context) => const NewRoute(titleStr: "路由表"),
+      },
+      // onGenerateRoute: (settings) {
+      //   return MaterialPageRoute(builder: (context) {
+
+      //   });
+      // },
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -112,6 +121,17 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            TextButton(
+                onPressed: () async {
+                  // var result = Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) {
+                  //   return const NewRoute(titleStr: "new route with title");
+                  // }));
+                  var result = Navigator.pushNamed(context, "new_page");
+
+                  print("路由返回值: $result");
+                },
+                child: const Text("open new route"))
           ],
         ),
       ),
