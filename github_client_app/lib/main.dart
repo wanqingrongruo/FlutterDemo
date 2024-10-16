@@ -1,10 +1,8 @@
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:helloroni/new_route.dart';
-
+import 'package:github_client_app/common/global.dart';
 
 void main() {
-  runApp(const MyApp());
+  Global.init().then((e) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Roni',
+      title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -34,14 +32,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      routes: {
-        "new_page": (context) => const NewRoute(titleStr: "路由表"),
-      },
-      // onGenerateRoute: (settings) {
-      //   return MaterialPageRoute(builder: (context) {
-
-      //   });
-      // },
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -123,166 +113,14 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            TextButton(
-                onPressed: () async {
-                  // var result = Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) {
-                  //   return const NewRoute(titleStr: "new route with title");
-                  // }));
-                  var result = Navigator.pushNamed(context, "new_page");
-
-                  print("路由返回值: $result");
-                },
-                child: const Text("open new route")),
-            RandomWordsWidget()
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _incrementCounter;
-        },
+        onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-
-class Echo extends StatelessWidget {
-  const Echo({Key? key, required this.text, this.backgroundColor = Colors.grey})
-      : super(key: key);
-
-  final String text;
-  final Color backgroundColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        color: backgroundColor,
-        child: Text(text),
-      ),
-    );
-  }
-}
-
-class CounterWidget extends StatefulWidget {
-  final int initValue;
-
-  const CounterWidget({Key? key, this.initValue = 0}) : super(key: key);
-
-  @override
-  State<CounterWidget> createState() {
-    return _CounterWidgetState();
-  }
-}
-
-class _CounterWidgetState extends State<CounterWidget> {
-  int _count = 0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _count = widget.initValue;
-    print("initState");
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print("build");
-
-    return Scaffold(
-      body: Center(
-        child: TextButton(
-          child: Text('$_count'),
-          onPressed: () => {
-            setState(() {
-              ++_count;
-            })
-          },
-        ),
-      ),
-    );
-  }
-
-  @override
-  void didUpdateWidget(covariant CounterWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    print("didUpdateWidget");
-  }
-
-  @override
-  void deactivate() {
-    super.deactivate();
-
-    print("deactivate");
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    print("dispose");
-  }
-
-  @override
-  void reassemble() {
-    super.reassemble();
-    print("reassemble");
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print("didChangeDependencies");
-  }
-}
-
-class StateLiftcycleTest extends StatelessWidget {
-  const StateLiftcycleTest({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const CounterWidget();
-  }
-}
-
-class RenderCustomObject extends RenderBox {
-  @override
-  void performLayout() {
-    // 实现布局逻辑
-  }
-
-  @override
-  void paint(PaintingContext context, Offset offset) {
-    // 实现绘制
-  }
-}
-
-class CustomWidget extends LeafRenderObjectWidget {
-  const CustomWidget({super.key});
-
-  @override
-  RenderObject createRenderObject(BuildContext context) {
-    return RenderCustomObject();
-  }
-
-  @override
-  void updateRenderObject(
-      BuildContext context, covariant RenderObject renderObject) {
-    super.updateRenderObject(context, renderObject);
-  }
-}
-
-class RandomWordsWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    
-    final wordPair = WordPair.random();
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Flex(direction: direction))
     );
   }
 }
