@@ -1,0 +1,14 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(title: const Text("NB")),
+      body: const Center(
+        child: Text("hello, roni",
+            textDirection: TextDirection.ltr,
+            style: TextStyle(color: Colors.red, fontSize: 40)),
+      ),
+    ),
+  ));
+}
